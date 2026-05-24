@@ -51,7 +51,7 @@ SOURCES: dict[str, str] = {
 HERE        = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT   = os.path.dirname(HERE)  # scripts/ -> repo root
 HOSTS_FILE  = os.path.join(REPO_ROOT, "lists", "hosts")
-HASHES_FILE = os.path.join(REPO_ROOT, "lists", "source_hashes.json")
+HASHES_FILE = os.path.join(REPO_ROOT, "source_hashes.json")
 
 
 # ── Fetch ─────────────────────────────────────────────────────────────────────
