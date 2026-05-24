@@ -9,14 +9,14 @@ on:
 
 jobs:
   update:
-    name: Fetch, Extract & Store Blocked URLs
+    name: Update hosts, create raw urls list and sqlite db
     runs-on: ubuntu-latest
 
     permissions:
       contents: write # Needed to commit updated files back to the repo
 
     steps:
-      - name: Checkout repository
+      - name: Check repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -24,14 +24,14 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Step 1 — Fetch lists and write hosts
-        run: python3 scripts/update_hosts.py
+      - name: Run combinator.py
+        run: python3 scripts/combinator.py
 
-      - name: Step 2 — Extract URLs from hosts
-        run: python3 scripts/extract_urls.py
+      - name: Run rawurls.py to create urls list
+        run: python3 scripts/rawurls.py
 
-      - name: Step 3 — Store URLs in SQLite database
-        run: python3 scripts/urls_to_db.py
+      - name: Run sqlite.py to store URLs in SQLite database
+        run: python3 scripts/sqlite.py
 
       - name: Commit updated files
         run: |
