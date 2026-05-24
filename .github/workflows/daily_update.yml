@@ -23,13 +23,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          
+
       - name: Restore hash cache
         uses: actions/cache@v4
         with:
           path: source_hashes.json
-          key: hosts-cache-${{ runner.os }}
-          restore-keys: hosts-cache-
+          key: hosts-hash-cache-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: hosts-hash-cache-${{ runner.os }}-
           
       - name: Run combinator.py
         run: python3 scripts/combinator.py
