@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-update_hosts.py — Fetch, diff, deduplicate, and write a combined hosts file.
+combinator.py — Fetch, diff, deduplicate, and write a combined hosts file.
 
 Sources:
   1. StevenBlack porn-only
