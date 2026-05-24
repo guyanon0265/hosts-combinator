@@ -34,10 +34,17 @@ jobs:
       - name: Run combinator.py
         run: python3 scripts/combinator.py
 
+      - name: Check if hosts changed
+        id: diff
+        run: |
+          git diff --quiet lists/hosts || echo "changed=true" >> $GITHUB_OUTPUT
+
       - name: Run rawurls.py to create urls list
+        if: steps.diff.outputs.changed == 'true'
         run: python3 scripts/rawurls.py
 
       - name: Run sqlite.py to store URLs in SQLite database
+        if: steps.diff.outputs.changed == 'true'
         run: python3 scripts/sqlite.py
 
       - name: Commit updated files
