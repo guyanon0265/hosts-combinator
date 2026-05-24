@@ -24,6 +24,7 @@ Usage:
 import urllib.request
 import subprocess
 import hashlib
+import json
 import sys
 import re
 import os
@@ -47,10 +48,10 @@ SOURCES: dict[str, str] = {
     ),
 }
 
-HERE       = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT  = os.path.dirname(HERE)  # scripts/ -> repo root
-HOSTS_FILE = os.path.join(REPO_ROOT, "lists", "hosts")
-CACHE_DIR  = os.path.join(REPO_ROOT, "lists", ".cache")
+HERE        = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT   = os.path.dirname(HERE)  # scripts/ -> repo root
+HOSTS_FILE  = os.path.join(REPO_ROOT, "lists", "hosts")
+HASHES_FILE = os.path.join(REPO_ROOT, "lists", "source_hashes.json")
 
 
 # ── Fetch ─────────────────────────────────────────────────────────────────────
@@ -92,24 +93,20 @@ def sha256(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def cache_path(name: str) -> str:
-    os.makedirs(CACHE_DIR, exist_ok=True)
-    safe = re.sub(r"[^a-zA-Z0-9_-]", "_", name)
-    return os.path.join(CACHE_DIR, f"{safe}.sha256")
+def load_saved_hashes() -> dict[str, str]:
+    """Load previously saved source hashes from source_hashes.json.
+    Returns an empty dict if the file doesn't exist yet."""
+    if not os.path.exists(HASHES_FILE):
+        return {}
+    with open(HASHES_FILE, "r", encoding="utf-8") as fh:
+        return json.load(fh)
 
 
-def has_changed(name: str, current_hash: str) -> bool:
-    """Return True if the hash differs from the stored one (or no cache exists)."""
-    path = cache_path(name)
-    if not os.path.exists(path):
-        return True
-    with open(path) as fh:
-        return fh.read().strip() != current_hash
-
-
-def save_hash(name: str, current_hash: str) -> None:
-    with open(cache_path(name), "w") as fh:
-        fh.write(current_hash)
+def save_hashes(hashes: dict[str, str]) -> None:
+    """Write current source hashes to source_hashes.json."""
+    with open(HASHES_FILE, "w", encoding="utf-8") as fh:
+        json.dump(hashes, fh, indent=2)
+        fh.write("\n")
 
 
 # ── Parse ─────────────────────────────────────────────────────────────────────
@@ -187,7 +184,7 @@ def main() -> None:
     print("╚════════════════════════════════════════════════════════════╝")
     print(f"\n  Run at : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  Output : {HOSTS_FILE}")
-    print(f"  Cache  : {CACHE_DIR}\n")
+    print(f"  Hashes : {HASHES_FILE}\n")
 
     # ── Step 1: Fetch ─────────────────────────────────────────────────────────
     banner("1 · Fetching lists")
@@ -219,8 +216,9 @@ def main() -> None:
     # ── Step 2: Change detection ──────────────────────────────────────────────
     banner("2 · Checking for changes")
 
+    saved = load_saved_hashes()
     for name in list(raw.keys()):
-        if has_changed(name, hashes[name]):
+        if hashes[name] != saved.get(name):
             changed[name] = True
             ok(f"{name}  →  CHANGED")
         else:
@@ -275,8 +273,7 @@ def main() -> None:
     ok(f"{count:,} unique domains written  ({size_kb:,.1f} KB)")
 
     # Persist hashes only after a successful write
-    for name, h in hashes.items():
-        save_hash(name, h)
+    save_hashes(hashes)
 
     # ── Done ──────────────────────────────────────────────────────────────────
     banner("Done")
