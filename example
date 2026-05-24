@@ -1,5 +1,7 @@
 # Included as testable user demonstration
 0.0.0.0 exampleadultsite.com
+0.0.0.0 www.exampleadultsite.com
 
 # Included for development testing
 # 0.0.0.0 example.com
+# 0.0.0.0 www.example.com
