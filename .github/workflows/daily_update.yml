@@ -27,7 +27,7 @@ jobs:
       - name: Restore hash cache
         uses: actions/cache@v4
         with:
-          path: lists/.cache
+          path: source_hashes.json
           key: hosts-cache-${{ runner.os }}
           restore-keys: hosts-cache-
           
