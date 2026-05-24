@@ -55,3 +55,10 @@ jobs:
           # Only commit if something actually changed
           git diff --cached --quiet || git commit -m "chore: daily hosts update $(date -u '+%Y-%m-%d')"
           git push
+
+      - name: Purge jsDelivr CDN cache
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          curl -s "https://purge.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/lists/hosts"
+          curl -s "https://purge.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/sqlite/blockedurls.sqlite3"
+          curl -s "https://purge.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/sqlite/dbversion.txt"
