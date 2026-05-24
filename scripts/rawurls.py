@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-extract_urls.py — Strip IP prefixes from hosts and write plain domains to urls.
+rawurls.py — Strip IP prefixes from hosts and write plain domains to urls.
 
 Reads 'hosts' from the same directory as this script, removes the leading
 '0.0.0.0' (or any IP address) from each entry, and writes one bare domain
