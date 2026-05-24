@@ -14,9 +14,11 @@ guyanon0265 | [README](https://github.com/guyanon0265/hosts-combinator/blob/main
 
 ## combined hosts file
 To use the combined hosts file for your own purposes, look in lists/hosts  
+It is suggested to use the compressed version. If used, please remember to rename the file to 'hosts'.  
 There is also a sqlite3 database containing all the raw URLs available in sqlite/blockedurls.sqlite3
 
 ## CDN
-[combined hosts](https://cdn.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/sqlite/dbversion.txt) (This will initiate a file download.)  
+[combined hosts](https://cdn.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/lists/hosts) (This will initiate a file download.)  
+[compressed hosts](https://cdn.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/lists/compressedhosts) (This will initiate a file download.)  
 [sqlite3 database](https://cdn.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/sqlite/blockedurls.sqlite3) (This will initiate a file download.)  
 [database version no.](https://cdn.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/sqlite/dbversion.txt) [Can be used as a flag for hosts list and database updates.]  
