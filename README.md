@@ -8,3 +8,11 @@ Source lists used to create combined list:
 StevenBlack | [readme](https://github.com/StevenBlack/hosts/blob/master/alternates/porn-only/readme.md) | [hosts](https://github.com/StevenBlack/hosts/blob/master/alternates/porn-only/hosts) | [raw](https://raw.githubusercontent.com/StevenBlack/hosts/refs/heads/master/alternates/porn-only/hosts) | [MIT](https://github.com/StevenBlack/hosts/blob/master/license.txt)
 4skinSkywalker | [README](https://github.com/4skinSkywalker/Anti-Porn-HOSTS-File/blob/master/README.md) | [HOSTS](https://github.com/4skinSkywalker/Anti-Porn-HOSTS-File/blob/master/HOSTS.txt) | [raw](https://raw.githubusercontent.com/4skinSkywalker/Anti-Porn-HOSTS-File/refs/heads/master/HOSTS.txt) | [MIT](https://github.com/4skinSkywalker/Anti-Porn-HOSTS-File/blob/master/LICENSE)
 guyanon0265 | [README](https://github.com/guyanon0265/hosts-combinator/blob/main/README.md) | [example](https://github.com/guyanon0265/hosts-combinator/blob/main/example) | [raw](https://raw.githubusercontent.com/guyanon0265/hosts-combinator/refs/heads/main/example) | [MIT](https://github.com/guyanon0265/hosts-combinator/blob/main/LICENSE)  
+
+
+## combined hosts file
+To use the combined hosts file for your own purposes, look in lists/hosts
+There is also a sqlite3 database containing all the raw URLs available in sqlite/blockedurls.sqlite3
+
+## CDN
+Placeholder
