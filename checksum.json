@@ -1,0 +1,21 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "compressedhosts": {
+      "path": "lists/compressedhosts",
+      "sha256": "ba19435f6f1b3493cd19481949050620fb4444bb8b1131cc6608bf5c906163fe",
+      "size": 2301548
+    },
+    "hosts": {
+      "path": "lists/hosts",
+      "sha256": "7d4ff051495ba7d9be5979881b2a9682072ab6ecfb7a9ed7fe38c6c4431e3598",
+      "size": 3228476
+    },
+    "sqlite": {
+      "path": "sqlite/blockedurls.sqlite3",
+      "sha256": "a49f1b131cc41feb9dbed9467b946137589857272d89a1c923fe17e8e3510294",
+      "size": 7561216,
+      "version": "4.6"
+    }
+  }
+}

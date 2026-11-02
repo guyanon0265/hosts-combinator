@@ -44,11 +44,14 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: python3 scripts/compressor.py
 
+      - name: Run checksum.py to create checksum.json
+        run: python3 scripts/checksum.py
+
       - name: Commit updated files
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add lists/hosts lists/urls lists/compressedhosts sqlite/blockedurls.sqlite3 sqlite/dbversion.txt source_hashes.json
+          git add lists/hosts lists/urls lists/compressedhosts sqlite/blockedurls.sqlite3 sqlite/dbversion.txt source_hashes.json checksum.json
           # Only commit if something actually changed
           git diff --cached --quiet || git commit -m "chore: daily hosts update $(date -u '+%Y-%m-%d')"
           git push
@@ -60,3 +63,4 @@ jobs:
           curl -s "https://purge.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/lists/compressedhosts"
           curl -s "https://purge.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/sqlite/blockedurls.sqlite3"
           curl -s "https://purge.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/sqlite/dbversion.txt"
+          curl -s "https://purge.jsdelivr.net/gh/guyanon0265/hosts-combinator@main/checksum.json"
