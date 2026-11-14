@@ -3,19 +3,19 @@
   "files": {
     "compressedhosts": {
       "path": "lists/compressedhosts",
-      "sha256": "3d4eed76946aea07ac386d910dc0fd925bf77b811e8bf6306756f7217f9f7415",
-      "size": 2288671
+      "sha256": "cfab5a6999f031d1e748836443420c615ca13ecd51a1ff7733190500a6c3a0d0",
+      "size": 2288793
     },
     "hosts": {
       "path": "lists/hosts",
-      "sha256": "784da24d3e2b0197fe6b5916559ba4c1575fe31f25f9eb3cfb1390868aa6ab2a",
-      "size": 3112613
+      "sha256": "9f7cdb510f1b56fd0cf68b565b9446c33da9dcbd00bfbccf6bd9408e64aaeddc",
+      "size": 3112807
     },
     "sqlite": {
       "path": "sqlite/blockedurls.sqlite3",
-      "sha256": "c84cc2e9416786553e19e22f7f833b15c4c658b1c54b46ca92169bd03b8b31eb",
+      "sha256": "54351a9fee9b05e449f4d275bfaf20aa9f9d26982d2acf92246a5f6cc58fb6be",
       "size": 7561216,
-      "version": "4.9"
+      "version": "5.0"
     }
   }
 }
